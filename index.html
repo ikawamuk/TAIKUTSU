@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAIKUTSU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ホーム画面 -->
+    <div id="homeScreen" class="home-screen">
+        <h1 class="home-title logo-base">TAIKUTSU</h1>
+        <button id="startBtn" class="btn-start">START</button>
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="gameScreen" class="game-screen hidden">
+        <h2 id="gameLogo" class="game-logo logo-base" role="button" tabindex="0" aria-label="タイトルに戻る">TAIKUTSU</h2>
+        <div id="scoreDisplay" class="score-display">正解: 0</div>
+        <div class="game-content">
+            <p id="question" class="game-question">退屈？</p>
+            <img id="gameImage" src="image/mugicha/image1.png" alt="ゲーム画像" class="game-image">
+            <div class="game-choices">
+                <button id="choice1" class="choice-btn" data-choice="1">退屈</button>
+                <button id="choice2" class="choice-btn" data-choice="2">退屈じゃない</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 終了画面（オーバーレイ）: 背景は透過で、ウィンドウのみを強調表示 -->
+    <div id="gameOverScreen" class="game-over-screen hidden">
+        <div class="game-over-overlay">
+            <div class="result-window">
+                <div class="result-header">
+                    <div class="result-title">スコア</div>
+                </div>
+                <div class="total-score">正解数：<span id="finalScore">0</span>問</div>
+                <div class="game-over-actions">
+                    <button id="backTitle" class="gameover-btn">タイトルに戻る</button>
+                    <button id="retryBtn" class="gameover-btn">もう一度</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
