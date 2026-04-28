@@ -7,27 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameLogo = document.getElementById('gameLogo');
     const choiceButtons = document.querySelectorAll('.choice-btn');
 
-    let questions = [];
-    let currentQuestionIndex = 0;
+    const questions = [
+        {
+            image: 'image/taikutsu/image1.png',
+            correctChoice: '1', // 「退屈」
+        },
+        {
+            image: 'image/not_taikutsu/image2.png',
+            correctChoice: '2', // 「退屈じゃない」
+        },
+    ];
 
-    async function loadQuestions() {
-        try {
-            const res = await fetch('questions.json', { cache: 'no-store' });
-            if (!res.ok) throw new Error('fetch failed');
-            const data = await res.json();
-            if (Array.isArray(data) && data.length) {
-                questions = data;
-                return;
-            }
-        } catch (err) {
-            // fallback to a small built-in set if fetch fails
-            console.warn('Failed to load questions.json, using fallback', err);
-            questions = [
-                { image: 'image/taikutsu/image1.png', correctChoice: '1' },
-                { image: 'image/not_taikutsu/image2.png', correctChoice: '2' },
-            ];
-        }
-    }
+    let currentQuestionIndex = 0;
 
     function showScreen(id) {
         // If showing an overlay (gameOverScreen), keep the game screen visible underneath.
@@ -52,13 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初期表示はホーム画面
     showScreen('homeScreen');
-
-    // load questions then render initial state when fetched
-    (async () => {
-        await loadQuestions();
-        // prepare first question so game shows correct image when started
-        renderQuestion();
-    })();
 
     // スコア表示（正解数）
     const scoreDisplay = document.getElementById('scoreDisplay');
